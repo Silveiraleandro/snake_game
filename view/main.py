@@ -11,7 +11,18 @@ FOOD_COLOR = "#FF0000"
 BACKGROUND_COLOR = "#000000"
 
 class Snake:
-    pass
+    def __init__(self):
+        # setting body size and coordinates
+        self.body_size = BODY_PARTS
+        self.coordinates = []
+        self.squares = []
+        # creating the list of coordinates
+        for i in range(0, BODY_PARTS):
+            self.coordinates.append([0,0])
+        # creating squares
+        for x, y in self.coordinates:
+            square = canvas.create_rectangle(x,y, x + SPACE_SIZE, y + SPACE_SIZE, fill=SNAKE_COLOR, tag="snake")
+            self.squares.append(square)
 
 class Food:
     def __init__(self):
@@ -26,7 +37,7 @@ class Food:
 
         # drawing food object on the canvas
         # setting color and a tag to make it easier to delete the object
-        canvas.create_rectangle(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill=FOOD_COLOR, tag="food")
+        canvas.create_oval(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill=FOOD_COLOR, tag="food")
 
 def next_turn():
     pass
