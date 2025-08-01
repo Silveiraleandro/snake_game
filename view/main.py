@@ -59,11 +59,25 @@ def next_turn(snake, food):
     square = canvas.create_rectangle(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill=SNAKE_COLOR)
     snake.squares.insert(0, square)
 
-    # attempt to delete the last body part of the snake
-    del snake.coordinates[-1]
-    # updating canvas
-    canvas.delete(snake.squares[-1])
-    del snake.squares[-1]
+    # adds the ability to eat food to the snake if indexes overlap
+    if x == food.coordinates[0] and y == food.coordinates[1]:
+        global score
+        score += 1
+
+        label.config(text="Score:{}".format(score))
+
+        # delete the food object using tag
+        canvas.delete("food")
+        # create a new object
+        food = Food()
+
+    else:
+        # attempt to delete the last body part of the snake
+        # only delete the last body part if the snake does not eat a food object
+        del snake.coordinates[-1]
+        # updating canvas
+        canvas.delete(snake.squares[-1])
+        del snake.squares[-1]
 
     # calling the next turn
     window.after(SPEED, next_turn, snake, food)
