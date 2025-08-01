@@ -29,7 +29,7 @@ def game_over():
     pass
 
 window = Tk()
-window.title("Snake Game")
+window.title("Snake Game LS")
 window.resizable(False, False)
 
 score = 0
@@ -38,5 +38,7 @@ direction = 'down'
 label = Label(window, text="Score:{}".format(score), font=('consolas', 40))
 label.pack()
 
+canvas = Canvas(window, background=BACKGROUND_COLOR, height=GAME_HEIGHT, width=GAME_WIDTH)
+canvas.pack()
 
 window.mainloop()
