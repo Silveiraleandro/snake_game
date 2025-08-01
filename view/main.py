@@ -119,7 +119,10 @@ def check_collisions(snake):
     return False
 
 def game_over():
-    pass
+    # defining gameover, setting text, centralizing it
+    canvas.delete(ALL)
+    canvas.create_text(canvas.winfo_width()/2, canvas.winfo_height()/2,
+                       font=('consolas',70), text="GAME OVER", fill="red", tag="gameover")
 
 window = Tk()
 window.title("Snake Game LS")
